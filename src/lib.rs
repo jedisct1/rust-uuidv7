@@ -21,7 +21,6 @@ pub fn create() -> String {
         .expect("Time went backwards")
         .as_millis() as u64;
     let mut buf = [0u8; 16];
-    println!("{}", ts);
     buf[0..8].copy_from_slice(&(ts << 16).to_be_bytes());
 
     let mut rnd = [0u8; 10];
