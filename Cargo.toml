@@ -11,5 +11,4 @@ readme = "README.md"
 keywords = ["uid", "uuid", "v7", "uuidv7"]
 
 [dependencies]
-base64 = "*"
 getrandom = "0.2.5"
