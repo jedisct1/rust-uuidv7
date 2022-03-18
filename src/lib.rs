@@ -2,13 +2,10 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 fn hex_format(out: &mut [u8], bin: &[u8]) {
     const HEX_CHARS: &[u8; 16] = b"0123456789abcdef";
-    let mut i = 0;
     let mut j = 0;
-    while i < bin.len() {
-        let b = bin[i];
+    for b in bin {
         out[j] = HEX_CHARS[(b >> 4) as usize];
         out[j + 1] = HEX_CHARS[(b & 0x0f) as usize];
-        i += 1;
         j += 2;
     }
 }
