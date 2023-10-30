@@ -10,8 +10,8 @@ fn hex_format(out: &mut [u8], bin: &[u8]) {
     }
 }
 
-/// Return a UUIDv7 string.
-pub fn create() -> String {
+/// Return a raw UUIDv7 byte array.
+pub fn create_raw() -> [u8; 16] {
     let start = SystemTime::now();
     let ts = start
         .duration_since(UNIX_EPOCH)
@@ -28,6 +28,12 @@ pub fn create() -> String {
     buf[6] |= 0x07;
     buf[8] &= 0xc0;
     buf[8] |= 0x02;
+    buf
+}
+
+/// Return a standard UUIDv7 string.
+pub fn create() -> String {
+    let buf = create_raw();
 
     let mut out = [0u8; 4 + 32];
     out[8] = b'-';
