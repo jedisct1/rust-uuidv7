@@ -25,9 +25,9 @@ pub fn create_raw() -> [u8; 16] {
 
     buf[6..].copy_from_slice(&rnd);
     buf[6] &= 0x0f;
-    buf[6] |= 0x07;
-    buf[8] &= 0xc0;
-    buf[8] |= 0x02;
+    buf[6] |= 0x70;
+    buf[8] &= 0x3f;
+    buf[8] |= 0x80;
     buf
 }
 
