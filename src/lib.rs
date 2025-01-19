@@ -14,7 +14,7 @@ fn hex_format(out: &mut [u8], bin: &[u8]) {
 ))]
 fn hammertime() -> u64 {
     use js_sys::Date;
-    Date::now() as i64
+    Date::now() as u64
 }
 
 #[cfg(not(all(
