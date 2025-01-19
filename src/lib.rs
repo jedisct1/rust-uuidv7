@@ -1,4 +1,4 @@
-use std::time::{SystemTime, UNIX_EPOCH};
+use time::OffsetDateTime;
 
 fn hex_format(out: &mut [u8], bin: &[u8]) {
     const HEX_CHARS: &[u8; 16] = b"0123456789abcdef";
@@ -12,11 +12,8 @@ fn hex_format(out: &mut [u8], bin: &[u8]) {
 
 /// Return a raw UUIDv7 byte array.
 pub fn create_raw() -> [u8; 16] {
-    let start = SystemTime::now();
-    let ts = start
-        .duration_since(UNIX_EPOCH)
-        .expect("Time went backwards")
-        .as_millis() as u64;
+    let start = OffsetDateTime::now_utc();
+    let ts: u64 = (start.unix_timestamp_nanos() / 1_000_000) as u64;
     let mut buf = [0u8; 16];
     buf[0..8].copy_from_slice(&(ts << 16).to_be_bytes());
 

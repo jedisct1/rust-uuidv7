@@ -10,6 +10,9 @@ homepage = "https://github.com/jedisct1/rust-uuidv7"
 readme = "README.md"
 keywords = ["uid", "uuid", "v7", "uuidv7"]
 
+[dependencies]
+time = { version = "0.3" }
+
 [target.'cfg(all(any(target_arch = "wasm32", target_arch = "wasm64"), target_os = "unknown"))'.dependencies]
 getrandom = { version = "0.2", optional = false, features = ["js"] }
 
