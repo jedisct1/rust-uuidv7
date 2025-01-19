@@ -1,5 +1,3 @@
-use time::OffsetDateTime;
-
 fn hex_format(out: &mut [u8], bin: &[u8]) {
     const HEX_CHARS: &[u8; 16] = b"0123456789abcdef";
     let mut j = 0;
@@ -10,10 +8,31 @@ fn hex_format(out: &mut [u8], bin: &[u8]) {
     }
 }
 
+#[cfg(all(
+    any(target_arch = "wasm32", target_arch = "wasm64"),
+    target_os = "unknown"
+))]
+fn hammertime() -> u64 {
+    use js_sys::Date;
+    Date::now() as i64
+}
+
+#[cfg(not(all(
+    any(target_arch = "wasm32", target_arch = "wasm64"),
+    target_os = "unknown"
+)))]
+fn hammertime() -> u64 {
+    use std::time::{SystemTime, UNIX_EPOCH};
+    let start = SystemTime::now();
+    start
+        .duration_since(UNIX_EPOCH)
+        .expect("Time went backwards")
+        .as_millis() as u64
+}
+
 /// Return a raw UUIDv7 byte array.
 pub fn create_raw() -> [u8; 16] {
-    let start = OffsetDateTime::now_utc();
-    let ts: u64 = (start.unix_timestamp_nanos() / 1_000_000) as u64;
+    let ts = hammertime();
     let mut buf = [0u8; 16];
     buf[0..8].copy_from_slice(&(ts << 16).to_be_bytes());
 
