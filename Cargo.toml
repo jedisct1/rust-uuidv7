@@ -1,6 +1,6 @@
 [package]
 name = "uuidv7"
-version = "0.1.6"
+version = "0.1.7"
 edition = "2018"
 authors = ["Frank Denis <github@pureftpd.org>"]
 description = "UUIDv7 implementation"
@@ -11,9 +11,10 @@ readme = "README.md"
 keywords = ["uid", "uuid", "v7", "uuidv7"]
 
 [target.'cfg(all(any(target_arch = "wasm32", target_arch = "wasm64"), target_os = "unknown"))'.dependencies]
-getrandom = { version = "0.2", optional = false, features = ["js"] }
+getrandom = { version = "0.3", optional = false, features = ["wasm_js"] }
 
 [target.'cfg(not(all(any(target_arch = "wasm32", target_arch = "wasm64"), target_os = "unknown")))'.dependencies]
-getrandom = { version = "0.2", optional = false }
+getrandom = { version = "0.3", optional = false }
 
+[dependencies]
 coarsetime = "0.1"

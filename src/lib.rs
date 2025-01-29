@@ -17,7 +17,7 @@ pub fn create_raw() -> [u8; 16] {
     buf[0..8].copy_from_slice(&(ts << 16).to_be_bytes());
 
     let mut rnd = [0u8; 10];
-    getrandom::getrandom(&mut rnd).unwrap();
+    getrandom::fill(&mut rnd).unwrap();
 
     buf[6..].copy_from_slice(&rnd);
     buf[6] &= 0x0f;
