@@ -1,6 +1,6 @@
 [package]
 name = "uuidv7"
-version = "0.1.7"
+version = "0.1.8"
 edition = "2018"
 authors = ["Frank Denis <github@pureftpd.org>"]
 description = "UUIDv7 generator for timestamp-based unique identifiers, with string and 16-byte binary output"
