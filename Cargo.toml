@@ -3,12 +3,12 @@ name = "uuidv7"
 version = "0.1.7"
 edition = "2018"
 authors = ["Frank Denis <github@pureftpd.org>"]
-description = "UUIDv7 implementation"
+description = "UUIDv7 generator for timestamp-based unique identifiers, with string and 16-byte binary output"
 license = "MIT"
 repository = "https://github.com/jedisct1/rust-uuidv7"
 homepage = "https://github.com/jedisct1/rust-uuidv7"
 readme = "README.md"
-keywords = ["uid", "uuid", "v7", "uuidv7"]
+keywords = ["uuid", "uuidv7", "identifier", "timestamp", "generator"]
 
 [target.'cfg(all(any(target_arch = "wasm32", target_arch = "wasm64"), target_os = "unknown"))'.dependencies]
 getrandom = { version = "0.3", optional = false, features = ["wasm_js"] }
